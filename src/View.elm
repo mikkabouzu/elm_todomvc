@@ -1,11 +1,20 @@
 module View exposing (..)
 
-import Html exposing (Html, div, text)
-import Messages exposing (Msg)
 import Models exposing (Model)
+import Messages exposing (Msg)
+import Html exposing (..)
+import Html.Attributes exposing (..)
+import Todos.New
+import Todos.List
 
 
 view : Model -> Html Msg
 view model =
-    div []
-        [ text model ]
+    div [ class "todoapp" ]
+        [ header [ class "header" ]
+            [ h1 [] [ text "todos" ] ]
+        , section [ class "main" ]
+            [ Todos.New.view
+            , Todos.List.view model.todos
+            ]
+        ]
