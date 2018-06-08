@@ -2,8 +2,8 @@ module Todos.Show exposing (..)
 
 import Models exposing (Todo)
 import Messages exposing (Msg)
-import Html exposing (..)
-import Html.Attributes exposing (..)
+import Html exposing (Html, li, div, input, label, button, text)
+import Html.Attributes exposing (classList, class, type_, checked)
 
 
 view : Todo -> Html Msg

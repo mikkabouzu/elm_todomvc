@@ -2,8 +2,8 @@ module View exposing (..)
 
 import Models exposing (Model)
 import Messages exposing (Msg)
-import Html exposing (..)
-import Html.Attributes exposing (..)
+import Html exposing (Html, div, header, h1, section, text)
+import Html.Attributes exposing (class)
 import Todos.New
 import Todos.List
 
