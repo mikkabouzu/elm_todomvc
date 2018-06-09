@@ -48,5 +48,5 @@ update msg model =
             , Cmd.none
             )
 
-        Filter filterstate ->
-            ( model, Cmd.none )
+        FilterTodos filter ->
+            ( { model | filter = filter }, Cmd.none )

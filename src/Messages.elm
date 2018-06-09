@@ -8,4 +8,4 @@ type Msg
     | UpdateTodoTitle String
     | UpdateTodoCompleted Todo Bool
     | RemoveTodo Todo
-    | Filter FilterState
+    | FilterTodos FilterState
