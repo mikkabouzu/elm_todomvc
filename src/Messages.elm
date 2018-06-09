@@ -9,4 +9,5 @@ type Msg
     | Delete Todo
     | UpdateTodo String
     | UpdateTodoCompleted TodoIdentifier Bool
+    | RemoveTodo TodoIdentifier
     | Filter FilterState

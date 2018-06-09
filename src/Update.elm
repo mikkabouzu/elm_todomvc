@@ -2,7 +2,7 @@ module Update exposing (..)
 
 import Messages exposing (Msg(..))
 import Models exposing (Model, blankTodo)
-import Todos.Helpers exposing (updateCompleted)
+import Todos.Helpers exposing (updateCompleted, remove)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -37,6 +37,13 @@ update msg model =
         UpdateTodoCompleted todoIdentifier completedOrNot ->
             ( { model
                 | todos = model.todos |> updateCompleted todoIdentifier completedOrNot
+              }
+            , Cmd.none
+            )
+
+        RemoveTodo todoIdentifier ->
+            ( { model
+                | todos = model.todos |> remove todoIdentifier
               }
             , Cmd.none
             )

@@ -13,3 +13,8 @@ updateCompleted identifier completeOrNot todos =
                 todo
     in
         List.map updateTodo todos
+
+
+remove : TodoIdentifier -> List Todo -> List Todo
+remove identifier todos =
+    List.filter (\todo -> todo.identifier /= identifier) todos
