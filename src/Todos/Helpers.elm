@@ -3,6 +3,11 @@ module Todos.Helpers exposing (..)
 import Models exposing (TodoIdentifier, Todo, FilterState(..))
 
 
+isValid : Todo -> Bool
+isValid todo =
+    not <| String.isEmpty todo.title
+
+
 updateCompleted : TodoIdentifier -> Bool -> List Todo -> List Todo
 updateCompleted identifier completeOrNot todos =
     let

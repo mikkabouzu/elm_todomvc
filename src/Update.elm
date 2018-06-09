@@ -2,7 +2,7 @@ module Update exposing (..)
 
 import Messages exposing (Msg(..))
 import Models exposing (Model, blankTodo)
-import Todos.Helpers exposing (updateCompleted, remove)
+import Todos.Helpers exposing (isValid, updateCompleted, remove)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -26,13 +26,16 @@ update msg model =
                 todoToAdd =
                     { todo | identifier = model.nextTodoIdentifier }
             in
-                ( { model
-                    | todo = blankTodo
-                    , todos = todoToAdd :: model.todos
-                    , nextTodoIdentifier = model.nextTodoIdentifier + 1
-                  }
-                , Cmd.none
-                )
+                if todo |> isValid then
+                    ( { model
+                        | todo = blankTodo
+                        , todos = todoToAdd :: model.todos
+                        , nextTodoIdentifier = model.nextTodoIdentifier + 1
+                      }
+                    , Cmd.none
+                    )
+                else
+                    ( model, Cmd.none )
 
         UpdateTodoCompleted todo completedOrNot ->
             ( { model
