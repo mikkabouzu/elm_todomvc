@@ -7,6 +7,7 @@ import Html.Attributes exposing (class)
 import Todos.New
 import Todos.List
 import Todos.ClearCompleted
+import Todos.ActiveCount
 import Filters.List
 
 
@@ -20,7 +21,8 @@ view model =
             , Todos.List.view model.filter model.todos
             ]
         , footer [ class "footer" ]
-            [ Filters.List.view model.filter
+            [ Todos.ActiveCount.view model.todos
+            , Filters.List.view model.filter
             , Todos.ClearCompleted.view
             ]
         ]
