@@ -6,6 +6,7 @@ import Html exposing (Html, div, header, h1, section, text, footer)
 import Html.Attributes exposing (class)
 import Todos.New
 import Todos.List
+import Todos.ClearCompleted
 import Filters.List
 
 
@@ -19,5 +20,7 @@ view model =
             , Todos.List.view model.filter model.todos
             ]
         , footer [ class "footer" ]
-            [ Filters.List.view model.filter ]
+            [ Filters.List.view model.filter
+            , Todos.ClearCompleted.view
+            ]
         ]

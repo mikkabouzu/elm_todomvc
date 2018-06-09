@@ -29,6 +29,11 @@ remove identifier todos =
         todos |> List.filter (not << toBeRemoved)
 
 
+excludeCompleted : List Todo -> List Todo
+excludeCompleted todos =
+    todos |> List.filter (not << .completed)
+
+
 filtered : FilterState -> List Todo -> List Todo
 filtered filterState todos =
     let
