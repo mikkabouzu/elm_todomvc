@@ -18,7 +18,20 @@ update msg model =
                 ( { model | todo = updatedTodo }, Cmd.none )
 
         AddTodo ->
-            ( { model | todo = blankTodo, todos = model.todo :: model.todos }, Cmd.none )
+            let
+                todo =
+                    model.todo
+
+                todoToAdd =
+                    { todo | identifier = model.nextTodoIdentifier }
+            in
+                ( { model
+                    | todo = blankTodo
+                    , todos = todoToAdd :: model.todos
+                    , nextTodoIdentifier = model.nextTodoIdentifier + 1
+                  }
+                , Cmd.none
+                )
 
         Complete todo ->
             ( model, Cmd.none )

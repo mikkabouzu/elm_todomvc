@@ -1,10 +1,15 @@
 module Models exposing (..)
 
 
+type alias TodoIdentifier =
+    Int
+
+
 type alias Todo =
     { title : String
     , completed : Bool
     , editing : Bool
+    , identifier : TodoIdentifier
     }
 
 
@@ -18,6 +23,7 @@ type alias Model =
     { todos : List Todo
     , todo : Todo
     , filter : FilterState
+    , nextTodoIdentifier : Int
     }
 
 
@@ -26,6 +32,7 @@ blankTodo =
     { title = ""
     , completed = False
     , editing = False
+    , identifier = 0
     }
 
 
@@ -35,8 +42,10 @@ initialModel =
         [ { title = "First TODO"
           , completed = True
           , editing = False
+          , identifier = 1
           }
         ]
     , todo = blankTodo
     , filter = All
+    , nextTodoIdentifier = 2
     }
