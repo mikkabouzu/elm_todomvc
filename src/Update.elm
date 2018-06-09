@@ -8,7 +8,7 @@ import Todos.Helpers exposing (updateCompleted, remove)
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        UpdateTodo title ->
+        UpdateTodoTitle title ->
             let
                 todo =
                     model.todo
@@ -47,12 +47,6 @@ update msg model =
               }
             , Cmd.none
             )
-
-        Complete todo ->
-            ( model, Cmd.none )
-
-        Delete todo ->
-            ( model, Cmd.none )
 
         Filter filterstate ->
             ( model, Cmd.none )
