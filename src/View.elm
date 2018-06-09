@@ -14,7 +14,7 @@ view model =
         [ header [ class "header" ]
             [ h1 [] [ text "todos" ] ]
         , section [ class "main" ]
-            [ Todos.New.view
+            [ Todos.New.view model.todo
             , Todos.List.view model.todos
             ]
         ]

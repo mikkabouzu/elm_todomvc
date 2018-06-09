@@ -4,7 +4,8 @@ import Models exposing (Todo, FilterState)
 
 
 type Msg
-    = Add Todo
+    = AddTodo
     | Complete Todo
     | Delete Todo
+    | UpdateTodo String
     | Filter FilterState

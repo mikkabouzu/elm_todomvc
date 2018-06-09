@@ -21,6 +21,14 @@ type alias Model =
     }
 
 
+blankTodo : Todo
+blankTodo =
+    { title = ""
+    , completed = False
+    , editing = False
+    }
+
+
 initialModel : Model
 initialModel =
     { todos =
@@ -29,10 +37,6 @@ initialModel =
           , editing = False
           }
         ]
-    , todo =
-        { title = ""
-        , completed = False
-        , editing = False
-        }
+    , todo = blankTodo
     , filter = All
     }
