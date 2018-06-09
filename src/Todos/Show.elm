@@ -15,13 +15,13 @@ view todo =
                 [ class "toggle"
                 , type_ "checkbox"
                 , checked todo.completed
-                , onCheck (UpdateTodoCompleted todo.identifier)
+                , onCheck (UpdateTodoCompleted todo)
                 ]
                 []
             , label [] [ text todo.title ]
             , button
                 [ class "destroy"
-                , onClick (RemoveTodo todo.identifier)
+                , onClick (RemoveTodo todo)
                 ]
                 []
             ]

@@ -1,6 +1,6 @@
 module Messages exposing (..)
 
-import Models exposing (TodoIdentifier, Todo, FilterState)
+import Models exposing (Todo, FilterState)
 
 
 type Msg
@@ -8,6 +8,6 @@ type Msg
     | Complete Todo
     | Delete Todo
     | UpdateTodo String
-    | UpdateTodoCompleted TodoIdentifier Bool
-    | RemoveTodo TodoIdentifier
+    | UpdateTodoCompleted Todo Bool
+    | RemoveTodo Todo
     | Filter FilterState

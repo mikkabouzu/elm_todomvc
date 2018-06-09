@@ -34,16 +34,16 @@ update msg model =
                 , Cmd.none
                 )
 
-        UpdateTodoCompleted todoIdentifier completedOrNot ->
+        UpdateTodoCompleted todo completedOrNot ->
             ( { model
-                | todos = model.todos |> updateCompleted todoIdentifier completedOrNot
+                | todos = model.todos |> updateCompleted todo.identifier completedOrNot
               }
             , Cmd.none
             )
 
-        RemoveTodo todoIdentifier ->
+        RemoveTodo todo ->
             ( { model
-                | todos = model.todos |> remove todoIdentifier
+                | todos = model.todos |> remove todo.identifier
               }
             , Cmd.none
             )
