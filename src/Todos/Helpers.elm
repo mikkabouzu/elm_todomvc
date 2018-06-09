@@ -11,18 +11,22 @@ isValid todo =
 updateCompleted : TodoIdentifier -> Bool -> List Todo -> List Todo
 updateCompleted identifier completeOrNot todos =
     let
-        updateTodo todo =
+        updateCompleted todo =
             if todo.identifier == identifier then
                 { todo | completed = completeOrNot }
             else
                 todo
     in
-        List.map updateTodo todos
+        todos |> List.map updateCompleted
 
 
 remove : TodoIdentifier -> List Todo -> List Todo
 remove identifier todos =
-    List.filter (\todo -> todo.identifier /= identifier) todos
+    let
+        toBeRemoved todo =
+            todo.identifier == identifier
+    in
+        todos |> List.filter (not << toBeRemoved)
 
 
 filtered : FilterState -> List Todo -> List Todo
