@@ -7,9 +7,10 @@ import Html.Attributes exposing (classList, class, type_, checked)
 import Html.Events exposing (onClick, onCheck)
 
 
-view : Todo -> Html Msg
+view : Todo -> ( String, Html Msg )
 view todo =
-    li [ classList [ ( "completed", todo.completed ) ] ]
+    ( toString todo.identifier
+    , li [ classList [ ( "completed", todo.completed ) ] ]
         [ div [ class "view" ]
             [ input
                 [ class "toggle"
@@ -26,3 +27,4 @@ view todo =
                 []
             ]
         ]
+    )
