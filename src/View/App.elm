@@ -1,14 +1,14 @@
-module View exposing (..)
+module View.App exposing (view)
 
-import Models exposing (Model)
+import Model exposing (Model)
 import Messages exposing (Msg)
 import Html exposing (Html, div, header, h1, section, text, footer)
 import Html.Attributes exposing (class)
-import Todos.List
-import Todos.ClearCompleted
-import Todos.ActiveCount
 import Filter.View.Filters as Filters
 import Todo.View.NewTodo as NewTodo
+import TodoList.View.TodoList as TodoList
+import TodoList.View.ActiveCount as ActiveTodoCount
+import TodoList.View.ClearCompleted as ClearCompletedTodos
 
 
 view : Model -> Html Msg
@@ -18,11 +18,11 @@ view model =
             [ h1 [] [ text "todos" ] ]
         , section [ class "main" ]
             [ NewTodo.view model.todo
-            , Todos.List.view model.filter.display model.todos
+            , TodoList.view model.filter.display model.todos
             ]
         , footer [ class "footer" ]
-            [ Todos.ActiveCount.view model.todos
+            [ ActiveTodoCount.view model.todos
             , Filters.view model.filter.display
-            , Todos.ClearCompleted.view
+            , ClearCompletedTodos.view
             ]
         ]

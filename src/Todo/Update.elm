@@ -1,4 +1,4 @@
-module Todo.Update exposing (update)
+module Todo.Update exposing (..)
 
 import Messages as Main exposing (Msg(MsgForTodo, MsgForTodoList))
 import Todo.Model exposing (Model, newTodo)

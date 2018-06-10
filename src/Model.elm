@@ -1,21 +1,12 @@
-module Models exposing (..)
+module Model exposing (..)
 
 import Filter.Model as Filter exposing (Model, initialModel)
-import Todo.Model as Todo exposing (Model, TodoIdentifier, newTodo)
-
-
-type alias TodoIdentifier =
-    -- hack for now
-    Todo.TodoIdentifier
-
-
-type alias Todo =
-    -- hack for now
-    Todo.Model
+import Todo.Model as Todo exposing (Model, newTodo)
+import TodoList.Model as TodoList exposing (Model)
 
 
 type alias Model =
-    { todos : List Todo.Model
+    { todos : TodoList.Model
     , todo : Todo.Model
     , filter : Filter.Model
     }
