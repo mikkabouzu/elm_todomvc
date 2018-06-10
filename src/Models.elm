@@ -1,47 +1,31 @@
 module Models exposing (..)
 
 import Filter.Model as Filter exposing (Model, initialModel)
+import Todo.Model as Todo exposing (Model, TodoIdentifier, newTodo)
 
 
 type alias TodoIdentifier =
-    Int
+    -- hack for now
+    Todo.TodoIdentifier
 
 
 type alias Todo =
-    { title : String
-    , completed : Bool
-    , editing : Bool
-    , identifier : TodoIdentifier
-    }
+    -- hack for now
+    Todo.Model
 
 
 type alias Model =
-    { todos : List Todo
-    , todo : Todo
+    { todos : List Todo.Model
+    , todo : Todo.Model
     , filter : Filter.Model
-    , nextTodoIdentifier : Int
-    }
-
-
-blankTodo : Todo
-blankTodo =
-    { title = ""
-    , completed = False
-    , editing = False
-    , identifier = 0
     }
 
 
 initialModel : Model
 initialModel =
     { todos =
-        [ { title = "First TODO"
-          , completed = True
-          , editing = False
-          , identifier = 1
-          }
+        [ newTodo 0 "First TODO"
         ]
-    , todo = blankTodo
+    , todo = newTodo 1 ""
     , filter = Filter.initialModel
-    , nextTodoIdentifier = 2
     }

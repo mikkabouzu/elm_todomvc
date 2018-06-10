@@ -4,11 +4,11 @@ import Models exposing (Model)
 import Messages exposing (Msg)
 import Html exposing (Html, div, header, h1, section, text, footer)
 import Html.Attributes exposing (class)
-import Todos.New
 import Todos.List
 import Todos.ClearCompleted
 import Todos.ActiveCount
 import Filter.View.Filters as Filters
+import Todo.View.NewTodo as NewTodo
 
 
 view : Model -> Html Msg
@@ -17,7 +17,7 @@ view model =
         [ header [ class "header" ]
             [ h1 [] [ text "todos" ] ]
         , section [ class "main" ]
-            [ Todos.New.view model.todo
+            [ NewTodo.view model.todo
             , Todos.List.view model.filter.display model.todos
             ]
         , footer [ class "footer" ]

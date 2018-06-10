@@ -1,21 +1,19 @@
 module Update exposing (update)
 
-import Messages exposing (Msg(..))
-import Models exposing (Model, Todo, blankTodo)
+import Messages as Main exposing (Msg(..))
+import Models exposing (Model, Todo)
 import Todos.Helpers exposing (isValid, excludeCompleted, updateCompleted, remove)
 import Filter.Update as Filter
+import Todo.Update as Todo
+import Todo.Model exposing (newTodo)
+import TodoList.Msg exposing (Msg(AddTodo))
 
 
-update : Msg -> Model -> ( Model, Cmd Msg )
+update : Main.Msg -> Model -> ( Model, Cmd Main.Msg )
 update msg model =
     case msg of
-        UpdateTodoTitle title ->
-            ( updateTodo title model
-            , Cmd.none
-            )
-
-        AddTodo ->
-            ( addTodo model
+        NoOp ->
+            ( model
             , Cmd.none
             )
 
@@ -39,36 +37,19 @@ update msg model =
             , Cmd.none
             )
 
+        MsgForTodo msgForTodo ->
+            ( { model | todo = Todo.update (MsgForTodo msgForTodo) model.todo }
+            , Cmd.none
+            )
 
-updateTodo : String -> Model -> Model
-updateTodo title model =
-    let
-        todo =
-            model.todo
-
-        updatedTodo =
-            { todo | title = title }
-    in
-        { model | todo = updatedTodo }
-
-
-addTodo : Model -> Model
-addTodo model =
-    let
-        todo =
-            model.todo
-
-        todoToAdd =
-            { todo | identifier = model.nextTodoIdentifier }
-    in
-        if todo |> isValid then
-            { model
-                | todo = blankTodo
-                , todos = todoToAdd :: model.todos
-                , nextTodoIdentifier = model.nextTodoIdentifier + 1
-            }
-        else
-            model
+        -- hack for now
+        MsgForTodoList (AddTodo todoIdentifier todoTitle) ->
+            ( { model
+                | todo = Todo.update (MsgForTodoList (AddTodo todoIdentifier todoTitle)) model.todo
+                , todos = (newTodo todoIdentifier todoTitle) :: model.todos
+              }
+            , Cmd.none
+            )
 
 
 updateTodoCompleted : Todo -> Bool -> Model -> Model
