@@ -8,7 +8,7 @@ import Todos.New
 import Todos.List
 import Todos.ClearCompleted
 import Todos.ActiveCount
-import Filters.List
+import Filter.View.Filters as Filters
 
 
 view : Model -> Html Msg
@@ -18,11 +18,11 @@ view model =
             [ h1 [] [ text "todos" ] ]
         , section [ class "main" ]
             [ Todos.New.view model.todo
-            , Todos.List.view model.filter model.todos
+            , Todos.List.view model.filter.display model.todos
             ]
         , footer [ class "footer" ]
             [ Todos.ActiveCount.view model.todos
-            , Filters.List.view model.filter
+            , Filters.view model.filter.display
             , Todos.ClearCompleted.view
             ]
         ]

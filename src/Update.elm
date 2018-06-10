@@ -1,8 +1,9 @@
 module Update exposing (update)
 
 import Messages exposing (Msg(..))
-import Models exposing (Model, Todo, FilterState, blankTodo)
+import Models exposing (Model, Todo, blankTodo)
 import Todos.Helpers exposing (isValid, excludeCompleted, updateCompleted, remove)
+import Filter.Update as Filter
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -33,8 +34,8 @@ update msg model =
             , Cmd.none
             )
 
-        FilterTodos filter ->
-            ( updateFilter filter model
+        MsgForFilter msgForFilter ->
+            ( { model | filter = Filter.update (MsgForFilter msgForFilter) model.filter }
             , Cmd.none
             )
 
@@ -89,8 +90,3 @@ clearCompletedTodos model =
     { model
         | todos = model.todos |> excludeCompleted
     }
-
-
-updateFilter : FilterState -> Model -> Model
-updateFilter filter model =
-    { model | filter = filter }

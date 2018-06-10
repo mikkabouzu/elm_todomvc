@@ -1,6 +1,7 @@
 module Todos.Helpers exposing (..)
 
-import Models exposing (TodoIdentifier, Todo, FilterState(..))
+import Models exposing (TodoIdentifier, Todo)
+import Filter.Model as DisplayMode exposing (DisplayMode)
 
 
 isValid : Todo -> Bool
@@ -34,18 +35,18 @@ excludeCompleted todos =
     todos |> List.filter (not << .completed)
 
 
-filtered : FilterState -> List Todo -> List Todo
-filtered filterState todos =
+filtered : DisplayMode -> List Todo -> List Todo
+filtered displayMode todos =
     let
         criteria =
-            case filterState of
-                All ->
+            case displayMode of
+                DisplayMode.All ->
                     always True
 
-                Active ->
+                DisplayMode.Active ->
                     not << .completed
 
-                Completed ->
+                DisplayMode.Completed ->
                     .completed
     in
         todos |> List.filter criteria

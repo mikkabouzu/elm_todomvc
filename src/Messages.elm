@@ -1,6 +1,7 @@
 module Messages exposing (..)
 
-import Models exposing (Todo, FilterState)
+import Models exposing (Todo)
+import Filter.Msg as Filter
 
 
 type Msg
@@ -9,4 +10,4 @@ type Msg
     | UpdateTodoCompleted Todo Bool
     | RemoveTodo Todo
     | ClearCompletedTodos
-    | FilterTodos FilterState
+    | MsgForFilter Filter.Msg

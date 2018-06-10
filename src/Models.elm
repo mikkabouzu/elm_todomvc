@@ -1,5 +1,7 @@
 module Models exposing (..)
 
+import Filter.Model as Filter exposing (Model, initialModel)
+
 
 type alias TodoIdentifier =
     Int
@@ -13,16 +15,10 @@ type alias Todo =
     }
 
 
-type FilterState
-    = All
-    | Active
-    | Completed
-
-
 type alias Model =
     { todos : List Todo
     , todo : Todo
-    , filter : FilterState
+    , filter : Filter.Model
     , nextTodoIdentifier : Int
     }
 
@@ -46,6 +42,6 @@ initialModel =
           }
         ]
     , todo = blankTodo
-    , filter = All
+    , filter = Filter.initialModel
     , nextTodoIdentifier = 2
     }
